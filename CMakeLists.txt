@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.15)
+project(blogging)
+
+set(CMAKE_CXX_STANDARD 14)
+
+#SET(Boost_USE_STATIC_LIBS ON)
+
+FIND_PACKAGE( Boost COMPONENTS log thread system REQUIRED )
+FIND_PACKAGE ( Threads REQUIRED )
+
+ADD_DEFINITIONS(-DBOOST_LOG_DYN_LINK)
+
+INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
+
+add_executable(blogging main.cpp)
+
+#TARGET_LINK_LIBRARIES(blogging ${Boost_LOG_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} )
+
+TARGET_LINK_LIBRARIES(blogging ${Boost_LOG_LIBRARY} ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY} ${CMAKE_THREAD_LIBS_INIT})
